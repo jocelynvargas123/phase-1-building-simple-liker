@@ -4,6 +4,31 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const errorModal = document.getElementById("modal")
+
+
+const likeButtons = document.querySelector('.like')
+likeButtons.addEventListener('click', function(){
+  mimicServerCall()
+  .then(function(response){
+    if (likeButtons.classList.contains('activated-heart')){
+      likeButtons.classList.remove('activated-heart')
+    } else {
+      likeButtons.classList.add('activated-heart')
+    }
+  })
+  .catch(function(error){
+    errorModal.classList.remove('hidden')
+    const errorMessage = errorModal.querySelector('p')
+    errorMessage.textContent = error
+    setTimeout(function() {
+      errorModal.classList.add('hidden')
+    }, 3000)
+  })
+})
+
+
+
 
 
 
